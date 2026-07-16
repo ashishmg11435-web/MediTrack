@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # The FastAPI Backend
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+aiomysql://root:Ashish%40123@db/meditrack
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+  # The MySQL Database
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Ashish@123
+      MYSQL_DATABASE: meditrack
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
