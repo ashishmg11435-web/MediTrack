@@ -20,12 +20,16 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # Add CORS middleware to allow the React frontend to communicate with the API
+origins = [
+    "https://medi-track-ochre.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins (update this to your frontend URL in production)
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(router)
