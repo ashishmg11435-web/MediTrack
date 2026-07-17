@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Activity } from "lucide-react";
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Login() {
       body.append("username", form.email);
       body.append("password", form.password);
 
-      const response = await fetch(`${VITE_API_URL}/auth/login`, {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body,
