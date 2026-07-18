@@ -11,17 +11,24 @@ export default function Register() {
     password: "",
   });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");
+    setSuccess("");
 
     try {
-      await apiRequest("/auth/register", {
+      const response = await apiRequest("/auth/register", {
         method: "POST",
         body: JSON.stringify(form),
       });
-      navigate("/login");
+      
+      setSuccess(response.message);
+      
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (err) {
       setError(err.message);
     }
@@ -35,6 +42,7 @@ export default function Register() {
         <p className="muted">Start managing your health information.</p>
 
         {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
 
         <form onSubmit={handleSubmit}>
           <label>
