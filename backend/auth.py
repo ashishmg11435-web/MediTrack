@@ -20,8 +20,7 @@ from models import User
 
 load_dotenv()
 
-# Configuration (In production, these should come from environment variables)
-SECRET_KEY = os.getenv("SECRET_KEY", "anasjkddsknddfnkandklandanadsmnsaaa")  # Change this in your .env file!
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 load_dotenv()
 
 # The new MySQL Connection String using aiomysql
-DATABASE_URL = os.getenv("DATABASE_URL", "mysql+aiomysql://root:Ashish%40123@localhost/meditrack")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 
 # 1. Use create_async_engine instead of create_engine
